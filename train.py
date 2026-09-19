@@ -3,12 +3,15 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error, root_mean_squared_error, r2_score
+import joblib
+
 
 print("Loading DataFrame from CSV file...")
 df = pd.read_csv("kc_house_data.csv")
 print("DataFrame loaded successfully.")
 
 print("\n--------------------------------------------\n")
+
 print("DataFrame head:")
 print(df.head())
 print("\n--------------------------------------------\n")
@@ -28,6 +31,7 @@ print("\n--------------------------------------------\n")
 print("DataFrame describe:")
 print(df.describe())
 print("\n--------------------------------------------\n")
+
 print("DataFrame null values count:")
 missing = df.isnull().sum()
 print(missing)
@@ -37,6 +41,7 @@ print("DataFrame null values percentage:")
 missing_percentage = (missing / len(df)) * 100
 print(missing_percentage)
 print("\n--------------------------------------------\n")
+
 print("Converting 'date' column to datetime type...")
 df["date"] = pd.to_datetime(df["date"])
 
@@ -66,6 +71,7 @@ df["lot_size_per_sqft"] = (
 )
 
 print("\n--------------------------------------------\n")
+
 FEATURES = [
     "bedrooms",
     "bathrooms",
@@ -105,11 +111,13 @@ print("Splitting data into training and testing sets...")
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
 print("Data split completed.")
 print("\n--------------------------------------------\n")
+
 print("Training Linear Regression model...")
 model = LinearRegression()
 model.fit(x_train, y_train)
 print("Model training completed.")
 print("\n--------------------------------------------\n")
+
 print("Making predictions on the test set...")
 y_pred = model.predict(x_test)
 print("Predictions completed.")
@@ -134,6 +142,7 @@ print(f"Mean Squared Error (MSE): {mse}")
 print(f"Root Mean Squared Error (RMSE): {rmse}")
 print(f"R-squared (R2): {r2}")
 print("\n--------------------------------------------\n")
+
 coefficients = pd.DataFrame({
     "feature": x.columns,
     "coefficient": model.coef_
@@ -145,3 +154,7 @@ print("\n--------------------------------------------\n")
 
 print("Intercept:", model.intercept_)
 print("\n--------------------------------------------\n")
+
+print("Saving the trained model...")
+joblib.dump(model, "model.joblib")
+print("Model saved successfully.")
