@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error, root_mean_squared_error, r2_score
 
 print("Loading DataFrame from CSV file...")
 df = pd.read_csv("kc_house_data.csv")
@@ -108,4 +109,28 @@ print("Training Linear Regression model...")
 model = LinearRegression()
 model.fit(x_train, y_train)
 print("Model training completed.")
+print("\n--------------------------------------------\n")
+print("Making predictions on the test set...")
+y_pred = model.predict(x_test)
+print("Predictions completed.")
+print("\n--------------------------------------------\n")
+
+comparison = pd.DataFrame({
+    "actual": y_test.values,
+    "predicted": y_pred
+})
+
+print("Comparison of actual and predicted values:")
+print(comparison.head(10))
+print("\n--------------------------------------------\n")
+
+print("Model Evaluation Metrics:")
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = root_mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+print(f"Mean Absolute Error (MAE): {mae}")
+print(f"Mean Squared Error (MSE): {mse}")
+print(f"Root Mean Squared Error (RMSE): {rmse}")
+print(f"R-squared (R2): {r2}")
 print("\n--------------------------------------------\n")
