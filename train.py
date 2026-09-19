@@ -47,3 +47,20 @@ df["house_age"] = df["sale_year"] - df["yr_built"]
 
 print("Adding 'was_renovated' column...")
 df["was_renovated"] = (df["yr_renovated"] > 0).astype(int)
+
+print("Adding 'sqft_per_bedroom' column...")
+df["sqft_per_bedroom"] = (
+    df["sqft_living"] / df["bedrooms"].replace(0, np.nan)
+)
+
+print("Adding 'sqft_per_bathroom' column...")
+df["sqft_per_bathroom"] = (
+    df["sqft_living"] / df["bathrooms"].replace(0, np.nan)
+)
+
+print("Adding 'lot_size_per_sqft' column...")
+df["lot_size_per_sqft"] = (
+    df["sqft_lot"] / df["sqft_living"].replace(0, np.nan)
+)
+
+print("\n--------------------------------------------\n")
