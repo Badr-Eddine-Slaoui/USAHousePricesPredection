@@ -134,3 +134,14 @@ print(f"Mean Squared Error (MSE): {mse}")
 print(f"Root Mean Squared Error (RMSE): {rmse}")
 print(f"R-squared (R2): {r2}")
 print("\n--------------------------------------------\n")
+coefficients = pd.DataFrame({
+    "feature": x.columns,
+    "coefficient": model.coef_
+})
+
+print("Model coefficients:")
+print(coefficients)
+print("\n--------------------------------------------\n")
+
+print("Intercept:", model.intercept_)
+print("\n--------------------------------------------\n")
