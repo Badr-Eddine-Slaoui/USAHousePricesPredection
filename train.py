@@ -35,3 +35,9 @@ print("DataFrame null values percentage:")
 missing_percentage = (missing / len(df)) * 100
 print(missing_percentage)
 print("\n--------------------------------------------\n")
+print("Converting 'date' column to datetime type...")
+df["date"] = pd.to_datetime(df["date"])
+
+print("Extracting year and month from 'date' column...")
+df["sale_year"] = df["date"].dt.year
+df["sale_month"] = df["date"].dt.month
