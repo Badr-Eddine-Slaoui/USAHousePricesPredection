@@ -27,3 +27,10 @@ app.add_middleware(
 )
 
 model = joblib.load(MODEL_PATH)
+
+
+@app.get("/")
+def root():
+    return {
+        "message": "House Price Prediction API is running!"
+    }
