@@ -41,3 +41,6 @@ df["date"] = pd.to_datetime(df["date"])
 print("Extracting year and month from 'date' column...")
 df["sale_year"] = df["date"].dt.year
 df["sale_month"] = df["date"].dt.month
+
+print("Adding 'house_age' column...")
+df["house_age"] = df["sale_year"] - df["yr_built"]
