@@ -44,3 +44,6 @@ df["sale_month"] = df["date"].dt.month
 
 print("Adding 'house_age' column...")
 df["house_age"] = df["sale_year"] - df["yr_built"]
+
+print("Adding 'was_renovated' column...")
+df["was_renovated"] = (df["yr_renovated"] > 0).astype(int)
