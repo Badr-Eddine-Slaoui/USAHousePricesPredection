@@ -64,3 +64,37 @@ df["lot_size_per_sqft"] = (
 )
 
 print("\n--------------------------------------------\n")
+FEATURES = [
+    "bedrooms",
+    "bathrooms",
+    "sqft_living",
+    "sqft_lot",
+    "floors",
+    "waterfront",
+    "view",
+    "condition",
+    "grade",
+    "sqft_above",
+    "sqft_basement",
+    "yr_built",
+    "yr_renovated",
+    "zipcode",
+    "lat",
+    "long",
+    "sqft_living15",
+    "sqft_lot15",
+    "sale_year",
+    "sale_month",
+    "house_age",
+    "was_renovated",
+    "sqft_per_bedroom",
+    "sqft_per_bathroom",
+    "lot_size_per_sqft"
+]
+
+TARGET = "price"
+
+df[FEATURES] = df[FEATURES].fillna(0)
+
+x = df[FEATURES]
+y = df[TARGET]
