@@ -26,3 +26,12 @@ print("\n--------------------------------------------\n")
 print("DataFrame describe:")
 print(df.describe())
 print("\n--------------------------------------------\n")
+print("DataFrame null values count:")
+missing = df.isnull().sum()
+print(missing)
+print("\n--------------------------------------------\n")
+
+print("DataFrame null values percentage:")
+missing_percentage = (missing / len(df)) * 100
+print(missing_percentage)
+print("\n--------------------------------------------\n")
