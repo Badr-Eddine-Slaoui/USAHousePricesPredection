@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>House Price Predictor</title>
+
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="min-h-screen text-white">
+
+    <!-- Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0 bg-[#08090d]"></div>
+
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+
+        <div class="absolute inset-0 bg-grid opacity-30"></div>
+    </div>
+
+
+    <!-- Header -->
+    <header class="border-b border-white/10 bg-black/20 backdrop-blur-xl">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+
+            <div class="flex items-center gap-3">
+                <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-black shadow-lg">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        class="h-6 w-6"
+                    >
+                        <path d="M3 11.5 12 4l9 7.5"/>
+                        <path d="M5 10v10h14V10"/>
+                        <path d="M9 20v-6h6v6"/>
+                    </svg>
+                </div>
+
+                <div>
+                    <h1 class="text-lg font-semibold tracking-tight">
+                        HousePredict
+                    </h1>
+
+                    <p class="text-xs text-zinc-500">
+                        Machine Learning Price Estimator
+                    </p>
+                </div>
+            </div>
+
+            <div class="hidden items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-3 py-1.5 text-xs text-emerald-400 sm:flex">
+                <span class="h-2 w-2 rounded-full bg-emerald-400 pulse"></span>
+                API Online
+            </div>
+
+        </div>
+    </header>
+
+
+    </header>
+</body>
+</html>
