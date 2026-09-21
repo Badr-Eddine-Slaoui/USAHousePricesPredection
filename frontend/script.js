@@ -45,3 +45,36 @@ function setLoading(loading) {
         button.classList.remove("opacity-70", "cursor-not-allowed");
     }
 }
+
+
+function showError(message) {
+    errorMessage.textContent = message;
+    errorMessage.classList.remove("hidden");
+}
+
+
+function hideError() {
+    errorMessage.classList.add("hidden");
+}
+
+
+function showPrediction(price) {
+    resultPlaceholder.classList.add("hidden");
+
+    result.classList.remove("hidden");
+
+    result.classList.remove("result-animation");
+
+    // Restart animation
+    void result.offsetWidth;
+
+    result.classList.add("result-animation");
+
+    predictedPrice.textContent =
+        new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            maximumFractionDigits: 0
+        }).format(price);
+}
+
