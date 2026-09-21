@@ -94,7 +94,382 @@
         </section>
 
 
-        </section>
+        <!-- Content -->
+        <div class="grid gap-6 lg:grid-cols-[1fr_380px]">
+
+            <!-- Form -->
+            <section class="glass rounded-3xl p-6 sm:p-8">
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold">
+                        Property details
+                    </h3>
+
+                    <p class="mt-1 text-sm text-zinc-500">
+                        Provide the information used by the prediction model.
+                    </p>
+                </div>
+
+
+                <form id="predictionForm" class="space-y-8">
+
+                    <!-- Basic -->
+                    <div>
+                        <div class="section-title">
+                            <span>01</span>
+                            Basic information
+                        </div>
+
+                        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+                            <div>
+                                <label>Bedrooms</label>
+                                <input
+                                    id="bedrooms"
+                                    type="number"
+                                    min="0"
+                                    step="1"
+                                    value="3"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label>Bathrooms</label>
+                                <input
+                                    id="bathrooms"
+                                    type="number"
+                                    min="0"
+                                    step="0.25"
+                                    value="2.5"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label>Floors</label>
+                                <input
+                                    id="floors"
+                                    type="number"
+                                    min="1"
+                                    step="0.5"
+                                    value="1.5"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label>Living area <span>(sqft)</span></label>
+                                <input
+                                    id="sqft_living"
+                                    type="number"
+                                    min="1"
+                                    value="1800"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label>Lot area <span>(sqft)</span></label>
+                                <input
+                                    id="sqft_lot"
+                                    type="number"
+                                    min="1"
+                                    value="5000"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label>ZIP code</label>
+                                <input
+                                    id="zipcode"
+                                    type="number"
+                                    value="98103"
+                                    required
+                                >
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- Quality -->
+                    <div>
+                        <div class="section-title">
+                            <span>02</span>
+                            Property quality
+                        </div>
+
+                        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+                            <div>
+                                <label>Grade</label>
+                                <input
+                                    id="grade"
+                                    type="number"
+                                    min="1"
+                                    max="13"
+                                    value="7"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label>Condition</label>
+                                <input
+                                    id="condition"
+                                    type="number"
+                                    min="1"
+                                    max="5"
+                                    value="3"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label>View</label>
+                                <input
+                                    id="view"
+                                    type="number"
+                                    min="0"
+                                    max="4"
+                                    value="0"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label>Waterfront</label>
+                                <select id="waterfront">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- Construction -->
+                    <div>
+                        <div class="section-title">
+                            <span>03</span>
+                            Construction
+                        </div>
+
+                        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+                            <div>
+                                <label>Year built</label>
+                                <input
+                                    id="yr_built"
+                                    type="number"
+                                    min="1800"
+                                    max="2026"
+                                    value="1990"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label>Year renovated</label>
+                                <input
+                                    id="yr_renovated"
+                                    type="number"
+                                    min="0"
+                                    max="2026"
+                                    value="0"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label>Above ground <span>(sqft)</span></label>
+                                <input
+                                    id="sqft_above"
+                                    type="number"
+                                    min="0"
+                                    value="1800"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label>Basement <span>(sqft)</span></label>
+                                <input
+                                    id="sqft_basement"
+                                    type="number"
+                                    min="0"
+                                    value="0"
+                                    required
+                                >
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- Location -->
+                    <div>
+                        <div class="section-title">
+                            <span>04</span>
+                            Location
+                        </div>
+
+                        <div class="grid gap-5 sm:grid-cols-2">
+
+                            <div>
+                                <label>Latitude</label>
+                                <input
+                                    id="lat"
+                                    type="number"
+                                    step="any"
+                                    value="47.68"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label>Longitude</label>
+                                <input
+                                    id="long"
+                                    type="number"
+                                    step="any"
+                                    value="-122.35"
+                                    required
+                                >
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- Neighborhood -->
+                    <div>
+                        <div class="section-title">
+                            <span>05</span>
+                            Neighborhood reference
+                        </div>
+
+                        <div class="grid gap-5 sm:grid-cols-2">
+
+                            <div>
+                                <label>
+                                    Nearby living area
+                                    <span>(sqft)</span>
+                                </label>
+
+                                <input
+                                    id="sqft_living15"
+                                    type="number"
+                                    min="0"
+                                    value="1700"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label>
+                                    Nearby lot area
+                                    <span>(sqft)</span>
+                                </label>
+
+                                <input
+                                    id="sqft_lot15"
+                                    type="number"
+                                    min="0"
+                                    value="5000"
+                                    required
+                                >
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- Sale date -->
+                    <div>
+                        <div class="section-title">
+                            <span>06</span>
+                            Sale date
+                        </div>
+
+                        <div class="max-w-sm">
+                            <label>Sale date</label>
+
+                            <input
+                                id="date"
+                                type="date"
+                                value="2014-10-13"
+                                required
+                            >
+                        </div>
+                    </div>
+
+
+                    <!-- Error -->
+                    <div
+                        id="errorMessage"
+                        class="hidden rounded-2xl border border-red-400/20 bg-red-400/5 px-4 py-3 text-sm text-red-300"
+                    ></div>
+
+
+                    <!-- Submit -->
+                    <button
+                        id="predictButton"
+                        type="submit"
+                        class="group flex w-full items-center justify-center gap-3 rounded-2xl bg-white px-6 py-4 font-semibold text-black transition hover:bg-zinc-200 active:scale-[0.99]"
+                    >
+                        <span id="buttonText">
+                            Predict house price
+                        </span>
+
+                        <svg
+                            id="buttonArrow"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            class="h-5 w-5 transition group-hover:translate-x-1"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                            />
+                        </svg>
+
+                        <svg
+                            id="spinner"
+                            class="hidden h-5 w-5 animate-spin"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                        >
+                            <circle
+                                class="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                stroke-width="4"
+                            ></circle>
+
+                            <path
+                                class="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                            ></path>
+                        </svg>
+                    </button>
+
+                </form>
+            </section>
+
+            </section>
+        </div>
     </main>
 </body>
 </html>
