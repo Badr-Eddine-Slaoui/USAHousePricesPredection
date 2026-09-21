@@ -44,3 +44,109 @@ body {
   bottom: -100px;
   left: 35%;
 } /* ------------------------------ Glass cards ------------------------------ */
+.glass {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(20px);
+}
+.result-card {
+  background: linear-gradient(
+    145deg,
+    rgba(99, 102, 241, 0.13),
+    rgba(255, 255, 255, 0.025)
+  );
+  border: 1px solid rgba(129, 140, 248, 0.18);
+  backdrop-filter: blur(20px);
+} /* ------------------------------ Typography ------------------------------ */
+.gradient-text {
+  background: linear-gradient(90deg, #a5b4fc, #c4b5fd, #93c5fd);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+} /* ------------------------------ Form ------------------------------ */
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #a1a1aa;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+label span {
+  color: #52525b;
+}
+input,
+select {
+  width: 100%;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.8rem 0.9rem;
+  color: #f4f4f5;
+  outline: none;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    box-shadow 150ms ease;
+}
+input::placeholder {
+  color: #52525b;
+}
+input:hover,
+select:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+input:focus,
+select:focus {
+  border-color: rgba(129, 140, 248, 0.6);
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+select option {
+  background: #18181b;
+  color: white;
+} /* ------------------------------ Section headings ------------------------------ */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  color: #e4e4e7;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.section-title span {
+  display: flex;
+  width: 26px;
+  height: 26px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(129, 140, 248, 0.1);
+  color: #a5b4fc;
+  font-size: 0.65rem;
+} /* ------------------------------ Animations ------------------------------ */
+.pulse {
+  animation: pulse-animation 2s infinite;
+}
+@keyframes pulse-animation {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+@keyframes result-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.result-animation {
+  animation: result-in 350ms ease-out;
+}
