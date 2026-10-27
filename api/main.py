@@ -1,88 +1,70 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-import joblib
-from pathlib import Path
 from .model import HouseFeatures
+from fastapi import FastAPI, status, Query
+from fastapi.responses import JSONResponse
+from pathlib import Path
+import joblib
 import pandas as pd
 
-ROOT_DIR = Path(__file__).resolve().parents[1]
-MODEL_PATH = ROOT_DIR / "model.joblib"
-
-app = FastAPI(
-    title="House Price Prediction API",
-    description="API for predicting house prices",
-    version="1.0.0"
-)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "http://0.0.0.0:5500",
-        "http://127.0.0.1:5500",
-        "http://localhost:5500",
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+ROOT_PATH = Path(__file__).resolve().parents[1]
+MODEL_PATH = ROOT_PATH / "model.joblib"
 
 model = joblib.load(MODEL_PATH)
 
 
-@app.get("/")
-def root():
-    return {
-        "message": "House Price Prediction API is running!"
-    }
-    
+app = FastAPI(
+    title="House Prices prediction"
+)
+
+
+
 @app.post("/predict")
-def predict(features: HouseFeatures):
-    date = features.date
+def predict(house_features: HouseFeatures):
+    date = house_features.date
     
     sale_year = date.year
     sale_month = date.month
     
-    house_age = sale_year - features.yr_built
+    house_age = sale_year - house_features.yr_built
     
-    was_renovated = int(features.yr_renovated > 0)
+    was_renovated = int(house_features.yr_renovated > 0)
     
     sqft_per_bedroom = (
-        features.sqft_living / features.bedrooms
-        if features.bedrooms != 0
+        house_features.sqft_living / house_features.bedrooms
+        if house_features.bedrooms != 0
         else 0
     )
 
     sqft_per_bathroom = (
-        features.sqft_living / features.bathrooms
-        if features.bathrooms != 0
+        house_features.sqft_living / house_features.bathrooms
+        if house_features.bathrooms != 0
         else 0
     )
 
     lot_size_per_sqft = (
-        features.sqft_lot / features.sqft_living
-        if features.sqft_living != 0
+        house_features.sqft_lot / house_features.sqft_living
+        if house_features.sqft_living != 0
         else 0
     )
     
     data = {
-        "bedrooms": features.bedrooms,
-        "bathrooms": features.bathrooms,
-        "sqft_living": features.sqft_living,
-        "sqft_lot": features.sqft_lot,
-        "floors": features.floors,
-        "waterfront": features.waterfront,
-        "view": features.view,
-        "condition": features.condition,
-        "grade": features.grade,
-        "sqft_above": features.sqft_above,
-        "sqft_basement": features.sqft_basement,
-        "yr_built": features.yr_built,
-        "yr_renovated": features.yr_renovated,
-        "zipcode": features.zipcode,
-        "lat": features.lat,
-        "long": features.long,
-        "sqft_living15": features.sqft_living15,
-        "sqft_lot15": features.sqft_lot15,
+        "bedrooms": house_features.bedrooms,
+        "bathrooms": house_features.bathrooms,
+        "sqft_living": house_features.sqft_living,
+        "sqft_lot": house_features.sqft_lot,
+        "floors": house_features.floors,
+        "waterfront": house_features.waterfront,
+        "view": house_features.view,
+        "condition": house_features.condition,
+        "grade": house_features.grade,
+        "sqft_above": house_features.sqft_above,
+        "sqft_basement": house_features.sqft_basement,
+        "yr_built": house_features.yr_built,
+        "yr_renovated": house_features.yr_renovated,
+        "zipcode": house_features.zipcode,
+        "lat": house_features.lat,
+        "long": house_features.long,
+        "sqft_living15": house_features.sqft_living15,
+        "sqft_lot15": house_features.sqft_lot15,
         "sale_year": sale_year,
         "sale_month": sale_month,
         "house_age": house_age,
@@ -91,11 +73,11 @@ def predict(features: HouseFeatures):
         "sqft_per_bathroom": sqft_per_bathroom,
         "lot_size_per_sqft": lot_size_per_sqft
     }
-
-    input_df = pd.DataFrame([data])
     
-    prediction = model.predict(input_df)
-
+    df = pd.DataFrame([data])
+    
+    predict_value = model.predict(df)
+    
     return {
-        "predicted_price": prediction[0]
+        "price" : predict_value[0]
     }
